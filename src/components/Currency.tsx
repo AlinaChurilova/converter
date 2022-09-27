@@ -1,11 +1,12 @@
 import React, {FC, useEffect, useState} from 'react';
-import useGetCourse from "../utils/getCourse";
 import {Container, Input, Select} from "./styled";
 import {currenciesTypes, CurrencyListTypes, currencyValue} from "../utils/types";
+import {useSelector} from "react-redux";
+import {RootState} from "../redux/store";
 
 const financial = (x:number) => x.toFixed(4);
 const Currency: FC = () => {
-    const currencyList = useGetCourse();
+    const currencyList = useSelector((state:RootState) => state.converter);
 
     const [currencySecond, setCurrencySecond] = useState<string>(currenciesTypes.Dollar);
     const [currencyFirstSum, setCurrencyFirstSum] = useState<number>(1);

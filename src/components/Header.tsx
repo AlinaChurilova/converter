@@ -1,11 +1,13 @@
-import React from 'react';
-import useGetCourse from "../utils/getCourse";
+import React, {FC} from 'react';
 import {FistTitleWord, HeaderContainer, HrefStyled, StyledImCoinEuro, TitleContainer} from "./styled";
+import {useSelector} from "react-redux";
+import {RootState} from "../redux/store";
 
 const API = "https://api.privatbank.ua/#p24/exchange";
 
-const Header = () => {
-    const currencyList:any = useGetCourse();
+const Header: FC = () => {
+    const currencyList = useSelector((state:RootState) => state.converter)
+
     return (
         <HeaderContainer>
             {currencyList && currencyList.map((item:any) => <HrefStyled href={API} key={item.ccy}>
